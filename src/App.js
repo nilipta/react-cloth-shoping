@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
+// import firebase from './Firebase';
 
-function App() {
+import PrimarySearchAppBar from './components/header';
+import HeaderDropdown from './components/headerDropdown';
+
+import ProductContext from './Context/ProductContext';
+import {CartProvider} from './Context/CartContext';
+import Asrouter from './Routes';
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ProductContext>
+      <CartProvider>
+        <Router>
+          <PrimarySearchAppBar />
+          <HeaderDropdown />
+          <div className="App">
+            <Asrouter />
+          </div>
+        </Router>
+      </CartProvider>
+    </ProductContext>
   );
 }
-
-export default App;
